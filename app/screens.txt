@@ -1,0 +1,29 @@
+1. login screen
+2. register screen
+3. landing screen
+    3.1 summary screen
+        3.1.1 overall summary
+            3.1.1.1 user aplit deep dive (by bills)
+            3.1.1.2 settle request with message
+        3.1.2 bill view
+            3.1.2.1 bill deep dive (by items)
+            3.1.2.2 edit bill
+                3.1.2.2.1 edit item/split
+        3.2. add bill
+            3.2.1 enter details and split
+            3.2.2 scan, edit and split
+        3.3. friends
+            3.3.1 frineds list
+                3.3.2 pending settle requests
+                3.3.3 completed settle requersts
+            3.3.2 add friends
+            3.3.3 requests
+4. notifications
+    4.1 frend requests
+    4.2 settle requests
+    4.3 new bill additions and settlements
+    
+
+    
+        
+

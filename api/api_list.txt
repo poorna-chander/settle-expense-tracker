@@ -1,0 +1,44 @@
+1. login screen
+    1. APIs: user authentication
+2. register screen
+    2. APIs: user validation and addition
+3. landing screen
+    3.1 summary screen
+        3.1.1 overall summary
+            API: get friend wise gives
+            API: get friend wise gets
+            3.1.1.1 user split deep dive (by bills)
+            API: get friend pair bill wise summary
+            3.1.1.2 settle request with message
+            API: send settle request to friend
+        3.1.2 bill view
+            3.1.2.1 bill deep dive (by items)
+            API: get paind and borrowd bill summary
+            3.1.2.2 edit bill
+                3.1.2.2.1 edit item/split
+                API: edit specific item price
+                API: edit specific item split
+            3.1.2.3 view bill
+            API: view specific bill summary
+        3.2. add bill
+            3.2.1 enter details and split
+            API: validate and add bill
+            3.2.2 scan, edit and split
+            API: TBD
+        3.3. friends
+            3.3.1 frineds list
+                3.3.2 pending settle requests
+                API: get pending settle requests
+                3.3.3 completed settle requersts
+                API: get settlement history
+            3.3.2 add friends
+            API: pair with friend
+            3.3.3 requests
+            API: get pending connection requests
+4. notifications
+    4.1 friend requests
+        API: get unseen connection requests 
+    4.2 settle requests
+        API: get unseen settle requests
+    4.3 new bill additions and settlements
+        API: get unceen additions
