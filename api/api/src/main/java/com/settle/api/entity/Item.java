@@ -37,8 +37,6 @@ public class Item {
     public Item() {
     }
     
-
-
     public Item(String itemName, String billCode, int Quantity, float price, int[] usersInvolvedItem) {
         this.itemName = itemName;
         this.billCode = billCode;
@@ -86,6 +84,14 @@ public class Item {
 
     public void setUsersInvolvedItem(int[] usersInvolvedItem) {
         this.usersInvolvedItem = usersInvolvedItem;
+    }
+
+    public Bill getBill() {
+        return this.bill;
+    }
+
+    public void setBill(Bill bill) {
+        this.bill = bill;
     }
 
 

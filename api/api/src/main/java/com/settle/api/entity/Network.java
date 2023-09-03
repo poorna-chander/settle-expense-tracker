@@ -48,7 +48,6 @@ public class Network {
     }
 
 
-
     public int getUserToId() {
         return this.userToId;
     }
@@ -79,6 +78,22 @@ public class Network {
 
     public void setLatestStatusTime(String latestStatusTime) {
         this.latestStatusTime = latestStatusTime;
+    }
+
+    public User getSendUser() {
+        return this.sendUser;
+    }
+
+    public void setSendUser(User sendUser) {
+        this.sendUser = sendUser;
+    }
+
+    public User getAcceptUser() {
+        return this.acceptUser;
+    }
+
+    public void setAcceptUser(User acceptUser) {
+        this.acceptUser = acceptUser;
     }
 
 

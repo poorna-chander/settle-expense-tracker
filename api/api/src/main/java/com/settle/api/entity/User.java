@@ -1,5 +1,6 @@
 package com.settle.api.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -40,11 +41,11 @@ public class User {
 
     @OneToMany(mappedBy = "sendUser", fetch = FetchType.LAZY,
                cascade = CascadeType.ALL)
-    private List<Network> senderPovNetwork;
+    private List<Network> requesters;
 
     @OneToMany(mappedBy = "acceptUser", fetch = FetchType.LAZY,
                cascade = CascadeType.ALL)
-    private List<Network> accepterPovNetwork;
+    private List<Network> accepters;
 
     @OneToMany(mappedBy = "userDetails", fetch = FetchType.LAZY,
                cascade = CascadeType.ALL)
@@ -91,6 +92,103 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    //***************************************
+
+    public List<Due> getDuesPayer() {
+        return this.duesPayer;
+    }
+
+    public void setDuesPayer(List<Due> duesPayer) {
+        this.duesPayer = duesPayer;
+    }
+
+    public List<Due> getDuesPayee() {
+        return this.duesPayee;
+    }
+
+    public void setDuesPayee(List<Due> duesPayee) {
+        this.duesPayee = duesPayee;
+    }
+
+    public List<Network> getRequesters() {
+        return this.requesters;
+    }
+
+    public void setRequesters(List<Network> requesters) {
+        this.requesters = requesters;
+    }
+
+    public List<Network> getAccepters() {
+        return this.accepters;
+    }
+
+    public void setAccepters(List<Network> accepters) {
+        this.accepters = accepters;
+    }
+
+    public List<Role> getRoles() {
+        return this.roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public void addRole(Role theRole) {
+
+        if (roles == null) {
+            roles = new ArrayList<>();
+        }
+
+        roles.add(theRole);
+
+        theRole.setUserDetails(this);
+    }
+
+    public void addAccepterRecord(Network accepter) {
+
+        if ( accepters == null) {
+            accepters = new ArrayList<>();
+        }
+
+        accepters.add(accepter);
+
+        accepter.setAcceptUser(this);
+    }
+
+    public void addRequesterRecord(Network requester) {
+
+        if ( requesters == null) {
+            requesters = new ArrayList<>();
+        }
+
+        requesters.add(requester);
+
+        requester.setAcceptUser(this);
+    }
+
+    public void addPayerDueRecord(Due theDue) {
+
+        if ( duesPayer == null) {
+            duesPayer = new ArrayList<>();
+        }
+
+        duesPayer.add(theDue);
+
+        theDue.setPayer(this);
+    }
+
+    public void addPayeeDueRecord(Due theDue) {
+
+        if ( duesPayee == null) {
+            duesPayee = new ArrayList<>();
+        }
+
+        duesPayee.add(theDue);
+
+        theDue.setPayee(this);
     }
 
 

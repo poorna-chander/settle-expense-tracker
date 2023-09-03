@@ -45,11 +45,8 @@ public class Due {
     @JoinColumn(name = "UserPayee")
     private User payee;
 
-    
-
     public Due() {
     }
-
 
     public Due(int userPayerId, int userPayeeId, String billCode, float amount, boolean settled) {
         this.userPayerId = userPayerId;
@@ -58,8 +55,6 @@ public class Due {
         this.amount = amount;
         this.settled = settled;
     }
-
-
 
     public int getUserPayerId() {
         return this.userPayerId;
@@ -103,6 +98,30 @@ public class Due {
 
     public void setSettled(boolean settled) {
         this.settled = settled;
+    }
+
+    public Bill getBill() {
+        return this.bill;
+    }
+
+    public void setBill(Bill bill) {
+        this.bill = bill;
+    }
+
+    public User getPayer() {
+        return this.payer;
+    }
+
+    public void setPayer(User payer) {
+        this.payer = payer;
+    }
+
+    public User getPayee() {
+        return this.payee;
+    }
+
+    public void setPayee(User payee) {
+        this.payee = payee;
     }
 
 

@@ -49,6 +49,14 @@ public class Role {
         this.role = role;
     }
 
+    public User getUserDetails() {
+        return this.userDetails;
+    }
+
+    public void setUserDetails(User userDetails) {
+        this.userDetails = userDetails;
+    }
+
 
     @Override
     public String toString() {

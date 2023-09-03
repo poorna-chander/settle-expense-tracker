@@ -1,5 +1,6 @@
 package com.settle.api.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -9,6 +10,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
+    
 
 @Entity
 @Table(name = "Bills")
@@ -90,6 +93,44 @@ public class Bill {
 
     public void setBillParticipantIds(int[] billParticipantIds) {
         this.billParticipantIds = billParticipantIds;
+    }
+
+    public List<Due> getDues() {
+        return this.dues;
+    }
+
+    public void setDues(List<Due> dues) {
+        this.dues = dues;
+    }
+
+    public List<Item> getItems() {
+        return this.items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    public void addItem(Item theItem) {
+
+        if (items == null) {
+            items = new ArrayList<>();
+        }
+
+        items.add(theItem);
+
+        theItem.setBill(this);
+    }
+
+    public void addDue(Due theDue) {
+
+        if (dues == null) {
+            dues = new ArrayList<>();
+        }
+
+        dues.add(theDue);
+
+        theDue.setBill(this);
     }
 
 
