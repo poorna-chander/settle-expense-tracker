@@ -1,10 +1,15 @@
 package com.settle.api.entity;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,6 +30,25 @@ public class User {
     @Column(name="Email")
     private String email;
 
+    @OneToMany(mappedBy = "payer", fetch = FetchType.LAZY,
+               cascade = CascadeType.ALL)
+    private List<Due> duesPayer;
+
+    @OneToMany(mappedBy = "payee", fetch = FetchType.LAZY,
+               cascade = CascadeType.ALL)
+    private List<Due> duesPayee;
+
+    @OneToMany(mappedBy = "sendUser", fetch = FetchType.LAZY,
+               cascade = CascadeType.ALL)
+    private List<Network> senderPovNetwork;
+
+    @OneToMany(mappedBy = "acceptUser", fetch = FetchType.LAZY,
+               cascade = CascadeType.ALL)
+    private List<Network> accepterPovNetwork;
+
+    @OneToMany(mappedBy = "userDetails", fetch = FetchType.LAZY,
+               cascade = CascadeType.ALL)
+    private List<Role> roles;
 
     public User() {
 

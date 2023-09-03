@@ -1,8 +1,13 @@
 package com.settle.api.entity;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,6 +29,14 @@ public class Bill {
 
     @Column(name = "BillInvolved")
     private int[] billParticipantIds;
+
+    @OneToMany(mappedBy = "bill", fetch = FetchType.LAZY,
+               cascade = CascadeType.ALL)
+    private List<Due> dues;
+
+    @OneToMany(mappedBy = "bill", fetch = FetchType.LAZY,
+               cascade = CascadeType.ALL)
+    private List<Item> items;
 
 
     public Bill() {
