@@ -1,10 +1,10 @@
-/* Database Relation model */
+
 
 CREATE TABLE "Tally" (
     "UserPayer" int   NOT NULL,
     "UserPayee" int   NOT NULL,
-    "Bill" int   NOT NULL,
-    "Ammount" float   NOT NULL,
+    "Bill" varchar(256)   NOT NULL,
+    "Amount" float   NOT NULL,
     "Settled" Boolean   NOT NULL,
     CONSTRAINT "pk_Tally" PRIMARY KEY (
         "UserPayer","UserPayee","Bill"
@@ -12,9 +12,9 @@ CREATE TABLE "Tally" (
 );
 
 CREATE TABLE "Bills" (
-    "Bill" int   NOT NULL,
+    "Bill" varchar(256)   NOT NULL,
     "Store" varchar(256)   NOT NULL,
-    "date" varchar(256)   NOT NULL,
+    "Date" varchar(256)   NOT NULL,
     "Payer" int   NOT NULL,
     "BillInvolved" int[]   NULL,
     CONSTRAINT "pk_Bills" PRIMARY KEY (
@@ -24,9 +24,9 @@ CREATE TABLE "Bills" (
 
 CREATE TABLE "ItemSplits" (
     "Item" varchar(256)   NOT NULL,
-    "Bill" int   NOT NULL,
+    "Bill" varchar(256)   NOT NULL,
     "Quantity" int   NOT NULL,
-    "price" int   NOT NULL,
+    "Price" float   NOT NULL,
     "ItemInvolved" int[]   NOT NULL,
     CONSTRAINT "pk_ItemSplits" PRIMARY KEY (
         "Item","Bill"
@@ -59,7 +59,7 @@ CREATE TABLE "Friends" (
     "Time" varchar(256)   NOT NULL,
     CONSTRAINT "pk_Friends" PRIMARY KEY (
         "UserTo","UserFrom"
-    )
+     )
 );
 
 ALTER TABLE "Tally" ADD CONSTRAINT "fk_Tally_UserPayer" FOREIGN KEY("UserPayer")
