@@ -38,10 +38,13 @@ CREATE TABLE "user_cred" (
     "user_name" varchar(256)   NOT NULL,
     "user_id" SERIAL NOT NULL,
     "password" varchar(256)   NOT NULL,
-    "email" varchar(256)   NOT NULL,
+    "email" varchar(256)  NOT NULL,
     CONSTRAINT "pk_UserCred" PRIMARY KEY (
         "user_id"
-     )
+     ),
+	CONSTRAINT "uc_UserCred_Email" UNIQUE (
+        "email"
+    )
 );
 
 CREATE TABLE "user_roles" (
