@@ -9,19 +9,19 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "UserRoles")
+@Table(name = "user_roles")
 public class Role {
 
     @Id
-    @Column(name = "User")
+    @Column(name = "user")
     private int user;
 
-    @Column(name = "Roles")
+    @Column(name = "roles")
     private int role;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
         CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name = "User")
+    @JoinColumn(name = "user", insertable = false, updatable = false)
     private User userDetails;
 
     public Role() {

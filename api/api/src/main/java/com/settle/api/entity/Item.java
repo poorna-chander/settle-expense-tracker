@@ -9,24 +9,24 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="ItemSplits")
+@Table(name="item_splits")
 public class Item {
 
     @Id
-    @Column(name = "Item")
+    @Column(name = "item")
     private String itemName;
     
     @Id
-    @Column(name = "Bill")
+    @Column(name = "bill")
     private String billCode;
 
-    @Column(name = "Quantity")
+    @Column(name = "quantity")
     private int Quantity;
 
-    @Column(name = "Price")
+    @Column(name = "price")
     private float price;
 
-    @Column(name = "ItemInvolved")
+    @Column(name = "item_involved")
     private int[] usersInvolvedItem;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,

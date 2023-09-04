@@ -14,23 +14,23 @@ import jakarta.persistence.Table;
     
 
 @Entity
-@Table(name = "Bills")
+@Table(name = "bills")
 public class Bill {
     
     @Id
-    @Column(name = "Bill")
+    @Column(name = "bill")
     private String billCode;
 
-    @Column(name = "Store")
+    @Column(name = "store")
     private int store;
 
-    @Column(name = "Date")
+    @Column(name = "date")
     private String date;
 
-    @Column(name = "Payer")
+    @Column(name = "payer")
     private int payerId;
 
-    @Column(name = "BillInvolved")
+    @Column(name = "bill_involved")
     private int[] billParticipantIds;
 
     @OneToMany(mappedBy = "bill", fetch = FetchType.LAZY,

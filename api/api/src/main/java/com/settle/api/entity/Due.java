@@ -9,40 +9,40 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Tally")
+@Table(name = "tally")
 public class Due {
 
     @Id
-    @Column(name = "UserPayer")
+    @Column(name = "user_payer")
     private int userPayerId;
 
     @Id
-    @Column(name = "UserPayee")
+    @Column(name = "user_payee")
     private int userPayeeId;
 
     @Id
-    @Column(name = "Bill")
+    @Column(name = "bill")
     private String billCode;
 
-    @Column(name = "Amount")
+    @Column(name = "amount")
     private float amount;
     
-    @Column(name = "Settled")
+    @Column(name = "settled")
     private boolean settled;
     
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
         CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name = "Bill")
+    @JoinColumn(name = "bill")
     private Bill bill;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
         CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name = "UserPayer")
+    @JoinColumn(name = "user_payer")
     private User payer;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
         CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name = "UserPayee")
+    @JoinColumn(name = "user_payee")
     private User payee;
 
     public Due() {

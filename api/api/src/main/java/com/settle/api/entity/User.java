@@ -14,21 +14,23 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="UserCred")
+@Table(name="user_cred")
 public class User {
 
     @Id
+    //strategy needs to be updated to custom serial for scalability
+    //refer : https://stackoverflow.com/questions/11825643/configure-jpa-to-let-postgresql-generate-the-primary-key-value
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="UserId")
+    @Column(name="user_id")
     private int id;
 
-    @Column(name="UserName")
+    @Column(name="user_name")
     private String userName;
 
-    @Column(name="Password")
+    @Column(name="password")
     private String encPassword;
 
-    @Column(name="Email")
+    @Column(name="email")
     private String email;
 
     @OneToMany(mappedBy = "payer", fetch = FetchType.LAZY,

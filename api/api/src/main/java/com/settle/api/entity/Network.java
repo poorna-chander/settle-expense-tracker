@@ -9,31 +9,31 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Friends")
+@Table(name = "friends")
 public class Network {
     
     @Id
-    @Column(name = "UserTo")
+    @Column(name = "user_to")
     private int userToId;
 
     @Id
-    @Column(name = "UserFrom")
+    @Column(name = "user_from")
     private int userFromId;
 
-    @Column(name = "Status")
+    @Column(name = "status")
     private int requestStatusCode;
 
-    @Column(name = "Time")
+    @Column(name = "time")
     private String latestStatusTime;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
         CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name = "UserTo")
+    @JoinColumn(name = "user_to")
     private User sendUser;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
         CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name = "UserFrom")
+    @JoinColumn(name = "user_from")
     private User acceptUser;
 
     public Network() {
