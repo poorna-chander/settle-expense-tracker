@@ -1,85 +1,85 @@
 
 
-CREATE TABLE "Tally" (
-    "UserPayer" int   NOT NULL,
-    "UserPayee" int   NOT NULL,
-    "Bill" varchar(256)   NOT NULL,
-    "Amount" float   NOT NULL,
-    "Settled" Boolean   NOT NULL,
+CREATE TABLE "tally" (
+    "user_payer" int   NOT NULL,
+    "user_payee" int   NOT NULL,
+    "bill" varchar(256)   NOT NULL,
+    "amount" float   NOT NULL,
+    "settles" Boolean   NOT NULL,
     CONSTRAINT "pk_Tally" PRIMARY KEY (
-        "UserPayer","UserPayee","Bill"
+        "user_payer","user_payee","bill"
      )
 );
 
-CREATE TABLE "Bills" (
-    "Bill" varchar(256)   NOT NULL,
-    "Store" varchar(256)   NOT NULL,
-    "Date" varchar(256)   NOT NULL,
-    "Payer" int   NOT NULL,
-    "BillInvolved" int[]   NULL,
+CREATE TABLE "bills" (
+    "bill" varchar(256)   NOT NULL,
+    "store" varchar(256)   NOT NULL,
+    "date" varchar(256)   NOT NULL,
+    "payer" int   NOT NULL,
+    "bill_involved" int[]   NULL,
     CONSTRAINT "pk_Bills" PRIMARY KEY (
-        "Bill"
+        "bill"
      )
 );
 
-CREATE TABLE "ItemSplits" (
-    "Item" varchar(256)   NOT NULL,
-    "Bill" varchar(256)   NOT NULL,
-    "Quantity" int   NOT NULL,
-    "Price" float   NOT NULL,
-    "ItemInvolved" int[]   NOT NULL,
+CREATE TABLE "item_splits" (
+    "item" varchar(256)   NOT NULL,
+    "bill" varchar(256)   NOT NULL,
+    "quantity" int   NOT NULL,
+    "price" float   NOT NULL,
+    "item_involved" int[]   NOT NULL,
     CONSTRAINT "pk_ItemSplits" PRIMARY KEY (
-        "Item","Bill"
+        "item","bill"
      )
 );
 
 -- Restrict users from entering the duplicate product name within a bill.
-CREATE TABLE "UserCred" (
-    "Username" varchar(256)   NOT NULL,
-    "UserId" int   NOT NULL,
-    "Password" varchar(256)   NOT NULL,
-    "Email" varchar(256)   NOT NULL,
+CREATE TABLE "user_cred" (
+    "user_name" varchar(256)   NOT NULL,
+    "user_id" SERIAL NOT NULL,
+    "password" varchar(256)   NOT NULL,
+    "email" varchar(256)   NOT NULL,
     CONSTRAINT "pk_UserCred" PRIMARY KEY (
-        "UserId"
+        "user_id"
      )
 );
 
-CREATE TABLE "UserRoles" (
-    "User" int   NOT NULL,
-    "Roles" varchar(256)   NOT NULL,
+CREATE TABLE "user_roles" (
+    "user" int   NOT NULL,
+    "roles" varchar(256)   NOT NULL,
     CONSTRAINT "pk_UserRoles" PRIMARY KEY (
-        "User"
+        "user"
      )
 );
 
-CREATE TABLE "Friends" (
-    "UserTo" int   NOT NULL,
-    "UserFrom" int   NOT NULL,
-    "Status" int   NOT NULL,
-    "Time" varchar(256)   NOT NULL,
+CREATE TABLE "friends" (
+    "user_to" int   NOT NULL,
+    "user_from" int   NOT NULL,
+    "status" int   NOT NULL,
+    "time" varchar(256)   NOT NULL,
     CONSTRAINT "pk_Friends" PRIMARY KEY (
-        "UserTo","UserFrom"
+        "user_to","user_from"
      )
 );
 
-ALTER TABLE "Tally" ADD CONSTRAINT "fk_Tally_UserPayer" FOREIGN KEY("UserPayer")
-REFERENCES "UserCred" ("UserId");
+ALTER TABLE "tally" ADD CONSTRAINT "fk_Tally_UserPayer" FOREIGN KEY("user_payer")
+REFERENCES "user_cred" ("user_id");
 
-ALTER TABLE "Tally" ADD CONSTRAINT "fk_Tally_UserPayee" FOREIGN KEY("UserPayee")
-REFERENCES "UserCred" ("UserId");
+ALTER TABLE "tally" ADD CONSTRAINT "fk_Tally_UserPayee" FOREIGN KEY("user_payee")
+REFERENCES "user_cred" ("user_id");
 
-ALTER TABLE "Tally" ADD CONSTRAINT "fk_Tally_Bill" FOREIGN KEY("Bill")
-REFERENCES "Bills" ("Bill");
+ALTER TABLE "tally" ADD CONSTRAINT "fk_Tally_Bill" FOREIGN KEY("bill")
+REFERENCES "bills" ("bill");
 
-ALTER TABLE "ItemSplits" ADD CONSTRAINT "fk_ItemSplits_Bill" FOREIGN KEY("Bill")
-REFERENCES "Bills" ("Bill");
+ALTER TABLE "item_splits" ADD CONSTRAINT "fk_ItemSplits_Bill" FOREIGN KEY("bill")
+REFERENCES "bills" ("bill");
 
-ALTER TABLE "UserRoles" ADD CONSTRAINT "fk_UserRoles_User" FOREIGN KEY("User")
-REFERENCES "UserCred" ("UserId");
+ALTER TABLE "user_roles" ADD CONSTRAINT "fk_UserRoles_User" FOREIGN KEY("user")
+REFERENCES "user_cred" ("user_id");
 
-ALTER TABLE "Friends" ADD CONSTRAINT "fk_Friends_UserTo" FOREIGN KEY("UserTo")
-REFERENCES "UserCred" ("UserId");
+ALTER TABLE "friends" ADD CONSTRAINT "fk_Friends_UserTo" FOREIGN KEY("user_to")
+REFERENCES "user_cred" ("user_id");
 
-ALTER TABLE "Friends" ADD CONSTRAINT "fk_Friends_UserFrom" FOREIGN KEY("UserFrom")
-REFERENCES "UserCred" ("UserId");
+ALTER TABLE "friends" ADD CONSTRAINT "fk_Friends_UserFrom" FOREIGN KEY("user_from")
+REFERENCES "user_cred" ("user_id");
 
