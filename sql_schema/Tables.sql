@@ -48,10 +48,11 @@ CREATE TABLE "user_cred" (
 );
 
 CREATE TABLE "user_roles" (
-    "user" int   NOT NULL,
+    "id" SERIAL NOT NULL,
+    "user_id" int   NOT NULL,
     "roles" varchar(256)   NOT NULL,
-    CONSTRAINT "pk_UserRoles" PRIMARY KEY (
-        "user"
+    CONSTRAINT "pk_IdUserRoles" PRIMARY KEY (
+        "id"
      )
 );
 
@@ -77,7 +78,7 @@ REFERENCES "bills" ("bill");
 ALTER TABLE "item_splits" ADD CONSTRAINT "fk_ItemSplits_Bill" FOREIGN KEY("bill")
 REFERENCES "bills" ("bill");
 
-ALTER TABLE "user_roles" ADD CONSTRAINT "fk_UserRoles_User" FOREIGN KEY("user")
+ALTER TABLE "user_roles" ADD CONSTRAINT "fk_UserRoles_User" FOREIGN KEY("user_id")
 REFERENCES "user_cred" ("user_id");
 
 ALTER TABLE "friends" ADD CONSTRAINT "fk_Friends_UserTo" FOREIGN KEY("user_to")
