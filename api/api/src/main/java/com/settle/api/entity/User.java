@@ -147,6 +147,7 @@ public class User {
         roles.add(theRole);
 
         theRole.setUserDetails(this);
+       
     }
 
     public void addAccepterRecord(Network accepter) {

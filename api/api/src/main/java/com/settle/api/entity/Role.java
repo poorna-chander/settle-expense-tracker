@@ -3,6 +3,8 @@ package com.settle.api.entity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -13,39 +15,38 @@ import jakarta.persistence.Table;
 public class Role {
 
     @Id
-    @Column(name = "user")
-    private int user;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
 
     @Column(name = "roles")
-    private int role;
+    private String role;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
         CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name = "user", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id")
     private User userDetails;
 
     public Role() {
     }
 
-    public Role(int user, int role) {
-        this.user = user;
+    public Role(String role) {
         this.role = role;
     }
 
-
-    public int getUser() {
-        return this.user;
+    public int getId() {
+        return this.id;
     }
 
-    public void setUser(int user) {
-        this.user = user;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getRole() {
+    public String getRole() {
         return this.role;
     }
 
-    public void setRole(int role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
@@ -61,7 +62,7 @@ public class Role {
     @Override
     public String toString() {
         return "{" +
-            " user='" + getUser() + "'" +
+            " id='" + getId() + "'" +
             ", role='" + getRole() + "'" +
             "}";
     }
