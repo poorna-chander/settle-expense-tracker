@@ -5,5 +5,7 @@ import com.settle.api.entity.User;
 public interface AppDao {
 
     void saveUser(User user);
+    User getUserByEmail(String email);
+    User getUserWithRolesByEmail(String email);
     
 }

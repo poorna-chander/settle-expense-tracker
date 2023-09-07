@@ -20,19 +20,36 @@ public class ApiApplication {
 	public CommandLineRunner commandLineRunner(AppDao appDao){
 		
 		return runner -> {
-			createUser(appDao);
+			// createUser(appDao);
+			// getUserByEmail(appDao);
+			getUserWithRolesByEmail(appDao);
 		};
 	}
 
+	
+
 	private void createUser(AppDao appDao) {
-		User user = new User("poorna","pcr123","@stetxatle.com");
+		User user = new User("ram","ram123","ram@settle.com");
 		Role role = new Role("admin");
-		Role role2 = new Role("user");
 		
 		user.addRole(role);
-		user.addRole(role2);
 		System.out.println("Saving Usser: " + user);
 		appDao.saveUser(user);
 		System.out.println("Done!");
+	}
+
+	private void getUserByEmail(AppDao appDao) {
+		User retUser = appDao.getUserByEmail("@stettle.com");
+		System.out.println("name: " + retUser.getUserName());
+		System.out.println("pssd: " + retUser.getEncPassword());
+		System.out.println("roles: "+ retUser.getRoles());
+
+	}
+
+	private void getUserWithRolesByEmail(AppDao appDao) {
+		User retUser = appDao.getUserWithRolesByEmail("@stettle.com");
+		System.out.println("name: " + retUser.getUserName());
+		System.out.println("pssd: " + retUser.getEncPassword());
+		System.out.println("roles: "+ retUser.getRoles());
 	}
 }
