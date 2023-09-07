@@ -16,9 +16,9 @@ public class Item {
     @Column(name = "item")
     private String itemName;
     
-    @Id
-    @Column(name = "bill")
-    private String billCode;
+    // @Id
+    // @Column(name = "bill")
+    // private String billCode;
 
     @Column(name = "quantity")
     private int Quantity;
@@ -29,17 +29,17 @@ public class Item {
     @Column(name = "item_involved")
     private int[] usersInvolvedItem;
 
+    @Id
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
         CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name = "Bill")
+    @JoinColumn(name = "bill")
     private Bill bill;
 
     public Item() {
     }
     
-    public Item(String itemName, String billCode, int Quantity, float price, int[] usersInvolvedItem) {
+    public Item(String itemName, int Quantity, float price, int[] usersInvolvedItem) {
         this.itemName = itemName;
-        this.billCode = billCode;
         this.Quantity = Quantity;
         this.price = price;
         this.usersInvolvedItem = usersInvolvedItem;
@@ -54,13 +54,13 @@ public class Item {
         this.itemName = itemName;
     }
 
-    public String getBillCode() {
-        return this.billCode;
-    }
+    // public String getBillCode() {
+    //     return this.billCode;
+    // }
 
-    public void setBillCode(String billCode) {
-        this.billCode = billCode;
-    }
+    // public void setBillCode(String billCode) {
+    //     this.billCode = billCode;
+    // }
 
     public int getQuantity() {
         return this.Quantity;
@@ -100,7 +100,6 @@ public class Item {
     public String toString() {
         return "{" +
             " itemName='" + getItemName() + "'" +
-            ", billCode='" + getBillCode() + "'" +
             ", Quantity='" + getQuantity() + "'" +
             ", price='" + getPrice() + "'" +
             ", usersInvolvedItem='" + getUsersInvolvedItem() + "'" +

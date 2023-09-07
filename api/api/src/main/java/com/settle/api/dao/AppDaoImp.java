@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.settle.api.entity.Bill;
+import com.settle.api.entity.Item;
 import com.settle.api.entity.User;
 
 import jakarta.persistence.EntityManager;
@@ -60,5 +61,39 @@ public class AppDaoImp implements AppDao{
     public void saveBill(Bill bill) {
         entityManager.persist(bill);
     }
+
+    @Override
+    public List<Bill> getBillsOnlyByPayer(int payerId) {
+        TypedQuery<Bill> query = entityManager.createQuery("select b from Bill b where b.payerId = :data", Bill.class);
+
+        query.setParameter("data", payerId);
+
+        List<Bill> bills = query.getResultList();
+
+        return bills; 
+    }
+    
+
+    @Override
+    public List<Item> getItemsWithBillCode(String billCode) {
+        TypedQuery<Bill> query = entityManager.createQuery("select b from Bill b JOIN FETCH b.items where b.billCode = :data", Bill.class);
+
+        query.setParameter("data", billCode);
+
+        List<Item> items = query.getSingleResult().getItems();
+
+        return items; 
+    }
+
+    @Override
+    @Transactional
+    public void addItemToBill(String billCode, Item item) {
+       TypedQuery<Bill> query = entityManager.createQuery("select b from Bill b JOIN FETCH b.items where b.billCode = :data", Bill.class);
+       query.setParameter("data", billCode);
+       Bill bill = query.getSingleResult();
+       bill.addItem(item);
+       entityManager.merge(bill);
+    }
+
     
 }
