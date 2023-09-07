@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.settle.api.entity.Bill;
 import com.settle.api.entity.User;
 
 import jakarta.persistence.EntityManager;
@@ -52,6 +53,12 @@ public class AppDaoImp implements AppDao{
         // assuming email id unique constrint in RDBMS is working
         return users.get(0);
         
+    }
+
+    @Override
+    @Transactional
+    public void saveBill(Bill bill) {
+        entityManager.persist(bill);
     }
     
 }
