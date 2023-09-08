@@ -31,16 +31,22 @@ public class ApiApplication {
 			// addBill(appDao);
 			// addBillWithItemSplits(appDao);
 			// getBillsByPayer(appDao);
-			getItemsByBillCode(appDao);
+			// getItemsByBillCode(appDao);
 			// addItemToBillCode(appDao);
+			updateItemPrice(appDao);
 		};
 	}
 
 	
 
+	private void updateItemPrice(AppDao appDao) {
+		Bill bill = appDao.getBillOnlyByCode("2023-09-07T16:20:47.159735992Z_2_2");
+		appDao.updateItemPrice(bill, "CRAB", 2f);
+	}
+
 	private void addItemToBillCode(AppDao appDao) {
 		int[] itmInvolved = {4};
-		Item item = new Item("chicken", 2, 6f, itmInvolved);
+		Item item = new Item("CRAB", 2, 6f, itmInvolved);
 		appDao.addItemToBill("2023-09-07T16:20:47.159735992Z_2_2", item);
 	}
 

@@ -14,7 +14,11 @@ public interface AppDao {
 
     void saveBill(Bill bill);
     List<Bill> getBillsOnlyByPayer(int payerId);
+    Bill getBillOnlyByCode(String billCode);
     List<Item> getItemsWithBillCode(String billCode);
     void addItemToBill(String billCode, Item item);
+    void updateItemPrice(Bill bill, String itemName, float price);
+    void updateItemPrice(String billCode, String itemName, float price);
+
     
 }

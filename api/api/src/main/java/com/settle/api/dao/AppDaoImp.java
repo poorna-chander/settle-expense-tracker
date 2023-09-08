@@ -92,8 +92,34 @@ public class AppDaoImp implements AppDao{
        query.setParameter("data", billCode);
        Bill bill = query.getSingleResult();
        bill.addItem(item);
-       entityManager.merge(bill);
+       entityManager.persist(bill);
     }
+
+    @Override
+    @Transactional
+    public void updateItemPrice(Bill bill, String itemName, float price) {
+        TypedQuery<Item> query = entityManager.createQuery("select i from Item i  where i.bill = :billname and i.itemName = :itemname", Item.class);
+        query.setParameter("billname", bill).setParameter("itemname", itemName);
+        Item item = query.getSingleResult();
+        item.setPrice(price);
+        entityManager.merge(item);
+    }
+
+    @Override
+    public Bill getBillOnlyByCode(String billCode) {
+        TypedQuery<Bill> query = entityManager.createQuery("select b from Bill b where b.billCode = :data", Bill.class);
+
+        query.setParameter("data", billCode);
+
+        List<Bill> bills = query.getResultList();
+
+        return bills.get(0); 
+    }
+
+    @Override
+    public void updateItemPrice(String billCode, String itemName, float price) {
+        
+    }   
 
     
 }
